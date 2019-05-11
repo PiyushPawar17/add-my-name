@@ -57,7 +57,7 @@ const List = ({ list, user, addName, removeName, deleteList }) => {
 					</button>
 				)}
 			</section>
-			<Modal isOpen={commentModal} className="modal">
+			<Modal isOpen={commentModal} className="modal" ariaHideApp={false}>
 				<form onSubmit={addNameToList}>
 					<section className="input">
 						<label htmlFor="comment">Comment (Optional)</label>
@@ -71,7 +71,7 @@ const List = ({ list, user, addName, removeName, deleteList }) => {
 					</section>
 				</form>
 			</Modal>
-			<Modal isOpen={deleteModal} className="modal">
+			<Modal isOpen={deleteModal} className="modal" ariaHideApp={false}>
 				<h1>Delete &apos;{list.title}&apos; List?</h1>
 				<section className="form__cta">
 					<button className="btn btn--danger" onClick={deleteCurrentList}>

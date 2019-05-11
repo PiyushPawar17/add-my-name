@@ -4,12 +4,15 @@ import Modal from 'react-modal';
 
 import Navbar from './Navbar';
 import Lists from './Lists';
+import Footer from './Footer';
 
 import '../styles/App.css';
 
 const App = () => {
 	// States
-	const [user, setUser] = useState({});
+	const [user, setUser] = useState({
+		name: ''
+	});
 	const [userLoading, setUserLoading] = useState(false);
 	const [userModal, setUserModal] = useState(true);
 
@@ -26,18 +29,19 @@ const App = () => {
 		axios
 			.get('/api/users/me')
 			.then(res => {
-				setUser(res.data.user);
-				setUserLoading(false);
-
 				if (res.data.user !== null) {
 					setUserModal(false);
+					setUser(res.data.user);
+				} else {
+					setUser({ name: '' });
 				}
+				setUserLoading(false);
 			})
 			.catch(err => {
-				setUser({});
+				setUser({ name: '' });
 				setUserLoading(false);
 			});
-	}, [JSON.stringify(user)]);
+	}, [user.name]);
 
 	useEffect(() => {
 		setListLoading(true);
@@ -48,11 +52,11 @@ const App = () => {
 				setListLoading(false);
 			})
 			.catch(err => setListLoading(false));
-	}, [JSON.stringify(lists)]);
+	}, [lists.length]);
 
 	// Other Functions
 	const signOut = () => {
-		setUser({});
+		setUser({ name: '' });
 	};
 
 	const createList = event => {
@@ -126,7 +130,8 @@ const App = () => {
 				removeName={removeName}
 				deleteList={deleteList}
 			/>
-			<Modal isOpen={userModal} className="modal">
+			<Footer />
+			<Modal isOpen={userModal} className="modal" ariaHideApp={false}>
 				{!userLoading ? (
 					<>
 						<h1>Add My Name</h1>
@@ -145,7 +150,7 @@ const App = () => {
 					<div className="loading">Loading...</div>
 				)}
 			</Modal>
-			<Modal isOpen={listModal} className="modal">
+			<Modal isOpen={listModal} className="modal" ariaHideApp={false}>
 				<p className="modal__close" onClick={() => setListModal(false)}>
 					&times;
 				</p>

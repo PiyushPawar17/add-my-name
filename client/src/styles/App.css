@@ -112,12 +112,46 @@ body {
 	border: 1px solid #777777;
 }
 
+.form__cta {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.form__cta > *:not(:last-child) {
+	margin-right: 1rem;
+}
+
+@media screen and (max-width: 1000px) {
+	.input input,
+	.input textarea {
+		width: 85%;
+	}
+}
+
+@media screen and (max-width: 750px) {
+	.input input,
+	.input textarea {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.user-info {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.user-info > *:not(:last-child) {
+		margin-bottom: 2rem;
+	}
+}
+
 /* Modal Styles */
 
 .modal {
 	position: relative;
 	border-radius: 3px;
-	width: 50%;
+	width: 60%;
 	margin: 0 auto;
 	margin-top: 5rem;
 	background-color: #ffffff;
@@ -146,13 +180,16 @@ body {
 	cursor: pointer;
 }
 
-.form__cta {
-	display: flex;
-	justify-content: flex-end;
+@media screen and (max-width: 900px) {
+	.modal {
+		width: 70%;
+	}
 }
 
-.form__cta > *:not(:last-child) {
-	margin-right: 1rem;
+@media screen and (max-width: 650px) {
+	.modal {
+		width: 90%;
+	}
 }
 
 /* Navbar Styles */
@@ -190,10 +227,43 @@ body {
 
 /* Lists Styles */
 
+.lists {
+	margin-bottom: 5rem;
+	min-height: 90vh;
+}
+
 .lists__lists {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	grid-gap: 2rem;
+}
+
+@media screen and (max-width: 1150px) {
+	.lists__lists {
+		grid-template-columns: repeat(3, 1fr);
+		grid-gap: 5rem;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.lists__lists {
+		grid-template-columns: repeat(2, 1fr);
+		grid-gap: 7rem;
+	}
+}
+
+@media screen and (max-width: 650px) {
+	.lists__lists {
+		grid-template-columns: 1fr;
+		width: 70%;
+		margin: 0 auto;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.lists__lists {
+		width: 85%;
+	}
 }
 
 /* List Styles */
@@ -253,4 +323,21 @@ body {
 .list__cta {
 	display: flex;
 	justify-content: flex-end;
+}
+
+/* Footer Styles */
+
+.footer {
+	background-color: #1d1c1c;
+	padding: 1rem 0;
+	box-shadow: -1rem 0 3rem rgba(0, 0, 0, 0.3);
+}
+
+.footer__logo {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.footer__logo img {
+	width: 4rem;
 }
